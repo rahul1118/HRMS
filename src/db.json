@@ -1,0 +1,61 @@
+{
+    "posts": [
+      {
+        "firstname": "Rahul",
+        "lastname": "Desai",
+        "birthdate": "2022-01-12",
+        "gender": "m",
+        "education": "graduate",
+        "company": "Google",
+        "address" : "111/B, Adhdar Society",
+        "contactno": "9876789900",
+        "pancard" : "ECIOD4466J",
+        "bloodgroup": "O-",
+        "emergencycontactname": "Sshh",
+        "emergencycontactno" :"7878980967",
+        "maritalstatus":"unmarried",
+        "hobbies":"crciket,football",
+        "familydetails":"family",
+        "instituename": "charusat"
+        "startdate":"10/02/2016",
+        "enddate":"12/12/2020",
+        "companyname":"google",
+        "designation":"developer",
+        "joiningdate":"01-01-2021",
+        "revealingdate":"00-00-00",
+        "id":1
+        
+      },
+      {
+        "firstname": "Desai",
+        "lastname": "Akash",
+        "birthdate": "2022-01-12",
+        "gender": "m",
+        "education": "graduate",
+        "company": "Google",
+        "address" : "118/B, Adhdar Society",
+        "contactno": "9876789900",
+        "pancard" : "ECIOD4486J",
+        "bloodgroup": "O-",
+        "emergencycontactname": "Sshh",
+        "emergencycontactno" :"7878900967",
+        "maritalstatus":"unmarried",
+        "hobbies":"crciket,football",
+        "familydetails":"family",
+        "instituename": "charusat"
+        "startdate":"13/02/2016",
+        "enddate":"12/02/2020",
+        "companyname":"google",
+        "designation":"developer",
+        "joiningdate":"01-02-2021",
+        "revealingdate":"00-00-00",
+        "id":2
+        
+      }
+     
+    ],
+    "comments": [],
+    "profile": {
+      "name": "typicode"
+    }
+  }

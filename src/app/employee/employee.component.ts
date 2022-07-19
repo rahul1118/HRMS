@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Employee } from '../models/employee.models';
+import { Employee } from './models/employee.model';
 
 @Component({
   selector: 'app-employee',
@@ -7,11 +7,7 @@ import { Employee } from '../models/employee.models';
   styleUrls: ['./employee.component.css'],
 })
 export class EmployeeComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-  @Input()
-  employee!: Employee;
+  @Input() employee: Employee;
   @Output() onRemoveEmployee = new EventEmitter<number>();
   @Output() onEditEmployee = new EventEmitter<number>();
 
@@ -21,46 +17,23 @@ export class EmployeeComponent implements OnInit {
       lastname: '',
       birthdate: '',
       gender: '',
-      address: '',
-      contactno: 
-      pancard: '',
-      bloodgroup: '',
-      emergencycontactname:'',
-      emergencycontactno:,
-      maritalstatus: '',
-      hobbies: '',
-      familydetails:'',
-      instituename: '',
-      degree: '',
-      startdate:,
-      enddate: ,
-      companyname:'',
-      designation: '',
-      joiningdate:,
-      revealingdate:
-},
-    }ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
+      education: '',
+      company: '',
+      jobExperience: 0,
+      salary: 0,
+      profile: '',
+    };
   }
 
   ngOnInit(): void {
-    console.log(this.employee),
+    console.log(this.employee);
   }
 
-  editEmployeeClicked() {
+  deleteEmployeeClicked() {
     this.onRemoveEmployee.emit(this.employee.id);
   }
 
   editEmployeeClicked(){
     this.onEditEmployee.emit(this.employee.id);
   }
-
-function editEmployeeClicked() {
-  throw new Error('Function not implemented.');
 }
-function ngOnInit() {
-  throw new Error('Function not implemented.');
-}
-

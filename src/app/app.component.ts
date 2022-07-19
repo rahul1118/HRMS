@@ -1,158 +1,175 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { EmployeeService } from './service/employee.service';
-import { Employee } from './models/employee.model';
-import { EmployeeService } from './services/employee.service';
+// import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+// import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+// import { EmployeeService } from './service/employee.service';
+// import { Employee } from './models/employee.model';
+// import { get } from 'mongoose';
+// import { Employee } from './models/employee.models';
 
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-})
-export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChild('fileInput') fileInput: any;
-  @ViewChild('addEmployeeButton') addEmployeeButton: any;
-  title = 'EmployeeCRUD';
+// @Component({
+//   selector: 'app-root',
+//   templateUrl: './app.component.html',
+//   styleUrls: ['./app.component.css'],
+// })
+// export class AppComponent implements OnInit, AfterViewInit {
+//   @ViewChild('fileInput') fileInput: any;
+//   @ViewChild('addEmployeeButton') addEmployeeButton: any;
+//   title = 'EmployeeCRUD';
 
-  employeeForm: FormGroup;
+//   employeeForm: FormGroup;
 
-  employees: Employee[];
-  employeesToDisplay: Employee[];
-  educationOptions = [
-    '10th pass',
-    '12th pass'
-    'diploma',
-    'graduate',
-    'post graduate',
-    'PhD',
-  ];
-  FirstName: any;
-  LastName: any;
-  Gender: any;
-  BirthDay: any;
-  Contact: number | undefined;
-  Pan: string | undefined;
-  Emergency: string | undefined;
-  Marital: string | undefined;
-  Hobbies: any;
-  Family: string | undefined;
-  Address: any;
-  Blood: any;
-  Education: any;
-  Degree: any;
-  StartDate: any;
-  EndDate: any;
-  InstitueName: any;
-  buttontemp: any;
-  EmergencyContact: number | undefined;
+//   employees: Employee[];
+//   employeesToDisplay: Employee[];
+//   educationOptions = [
+//     '10th pass',
+//     '12th pass'
+//     'diploma',
+//     'graduate',
+//     'post graduate',
+//     'PhD',
+//   ];
+//   FirstName: any;
+//   LastName: any;
+//   Gender: any;
+//   BirthDay: any;
+//   Contact: number | undefined;
+//   Pan: string | undefined;
+//   Emergency: string | undefined;
+//   Marital: string | undefined;
+//   Hobbies: any;
+//   Family: string | undefined;
+//   Address: any;
+//   Blood: any;
+//   Education: any;
+//   Degree: any;
+//   StartDate: any;
+//   EndDate: any;
+//   InstitueName: any;
+//   buttontemp: any;
+//   EmergencyContact: number | undefined;
+//   PanCard: any;
+//   BloodGroup: any;
+//   EmergencyContactName: any;
+//   MaritalStatus: any;
+//   FamilyDetails: any;
 
-  constructor(
-    private fb: FormBuilder,
-    private employeeService: EmployeeService
-  ) {
-    this.employeeForm = fb.group({});
-    this.employees = [];
-    this.employeesToDisplay = this.employees;
-  }
+//   constructor(
+//     private fb: FormBuilder,
+//     private employeeService: EmployeeService
+//   ) {
+//     this.employeeForm = fb.group({});
+//     this.employees = [];
+//     this.employeesToDisplay = this.employees;
+//   }
 
-  ngOnInit(): void {
-    this.employeeForm = this.fb.group({
-      firstname: this.fb.control(''),
-      lastname: this.fb.control(''),
-      birthday: this.fb.control(''),
-      gender: this.fb.control(''),
-      education: this.fb.control('default'),
-      company: this.fb.control(''),
-      jobExperience: this.fb.control(''),
-      salary: this.fb.control(''),
-    });
+//   ngOnInit(): void {
+//     this.employeeForm = this.fb.group({
+//       firstname: this.fb.control(''),
+//       lastname: this.fb.control(''),
+//       birthday: this.fb.control(''),
+//       gender: this.fb.control(''),
+//       education: this.fb.control('default'),
+//       company: this.fb.control(''),
+//       jobExperience: this.fb.control(''),
+//       salary: this.fb.control(''),
+//     });
 
-    this.employeeService.getEmployees().subscribe((res) => {
-      for (let emp of res) {
-        this.employees.unshift(emp);
-      }
-      this.employeesToDisplay = this.employees;
-    });
-  }
+//     this.employeeService.getEmployees().subscribe((res) => {
+//       for (let emp of res) {
+//         this.employees.unshift(emp);
+//       }
+//       this.employeesToDisplay = this.employees;
+//     });
+//   }
 
-  ngAfterViewInit(): void {
-    this.buttontemp.nativeElement.click();
-  }
+//   ngAfterViewInit(): void {
+//     this.buttontemp.nativeElement.click();
+//   }
 
-  addEmployee() {
-    let employee: Employee = {
-      firstname: this.FirstName.value,
-      lastname: this.LastName.value,
-      birthdate: this.BirthDay.value,
-      gender: this.Gender.value,
-      address: this.Address.value,
-      contactno: this.Contact No.value,
-      pancard: this.Pan Card.value,
-      bloodgroup: this.Blood Group.value,
-      emergencycontactname: this.EmergencyContact Name.value,
-      emergencycontactno: this.EmergencyContact No.value,
-      maritalstatus: this.Marital Status.value,
-      hobbies: this.Hobbies.value,
-      familydetails: this.Family Details.value,
+//   addEmployee() {
+//     let employee: Employee = {
+//       firstname: this.FirstName.value,
+//       lastname: this.LastName.value,
+//       birthdate: this.BirthDay.value,
+//       gender: this.Gender.value,
+//       address: this.Address.value,
+//       contactno: this.Contact.value,
+//       pancard: this.PanCard.value,
+//       bloodgroup: this.BloodGroup.value,
+//       emergencycontactname: this.EmergencyContactName.value,
+//       emergencycontactno: this.EmergencyContact.value,
+//       maritalstatus: this.MaritalStatus.value,
+//       hobbies: this.Hobbies.value,
+//       familydetails: this.FamilyDetails.value,
+//       education: undefined,
+//       institutename: function (institutename: any): void {
+//         throw new Error('Function not implemented.');
+//       },
+//       instituename: '',
+//       degree: '',
+//       startdate: 0,
+//       enddate: 0,
+//       companyname: '',
+//       designation: '',
+//       joiningdate: 0,
+//       revealingdate: 0
+//     };
+//     this.employeeService.postEmployee(employee).subscribe((res) => {
+//       this.employees.unshift(res);
+//       this.clearForm();
+//     });
+//   }
+//   clearForm() {
+//     throw new Error('Method not implemented.');
+//   }
 
-    };
-    this.employeeService.postEmployee(employee).subscribe((res) => {
-      this.employees.unshift(res);
-      this.clearForm();
-    });
-  }
-  clearForm() {
-    throw new Error('Method not implemented.');
-  }
+//   removeEmployee(event: any) {
+//     this.employees.forEach((val, index) => {
+//       if (val.id === parseInt(event)) {
+//         this.employeeService.deleteEmployee(event).subscribe((res) => {
+//           this.employees.splice(index, 1);
+//         });
+//       }
+//     });
+//   }
 
-  removeEmployee(event: any) {
-    this.employees.forEach((val, index) => {
-      if (val.id === parseInt(event)) {
-        this.employeeService.deleteEmployee(event).subscribe((res) => {
-          this.employees.splice(index, 1);
-        });
-      }
-    });
-  }
+//   editEmployee(event: any) {
+//     this.employees.forEach((val, ind) => {
+//       if (val.id === event) {
+//         this.setForm(val);
+//       }
+//     });
+//     this.removeEmployee(event);
+//     this.addEmployeeButton.nativeElement.click();
+//   }
 
-  editEmployee(event: any) {
-    this.employees.forEach((val, ind) => {
-      if (val.id === event) {
-        this.setForm(val);
-      }
-    });
-    this.removeEmployee(event);
-    this.addEmployeeButton.nativeElement.click();
-  }
+//   setForm(emp: Employee) {
+//     this.FirstName.setValue(emp.firstname);
+//     this.LastName.setValue(emp.lastname);
+//     this.BirthDay.setValue(emp.birthdate);
+//     this.Gender.setValue(emp.gender);
+//     this.Address.setValue(emp.address);
+//     this.Contact No.setValue(emp.contactno);
+//     this.Pan Card.setValue(emp.pancard);
+//     this.Blood Group.setValue(emp.bloodgroup);
+//     this.EmergencyContactName.setValue(emp.emergencycontactname);
+//     this.EmergencyContact.setValue(emp.emergencycontact);
+//     this.MaritalStatus.setValue(emp.maritalstatus);
+//     this.Hobbies.setValue(emp.hobbies);
+//     this.Family Details.setValue(emp.familydetails);
 
-  setForm(emp: Employee) {
-    this.FirstName.setValue(emp.firstname);
-    this.LastName.setValue(emp.lastname);
-    this.BirthDay.setValue(emp.birthdate);
-    this.Gender.setValue(emp.gender);
-    this.Address.setValue(emp.address);
-    this.Contact No.setValue(emp.contactno);
-    this.Pan Card.setValue(emp.pancard);
-    this.Blood Group.setValue(emp.bloodgroup);
-    this.Emergency this.Contact Name.setValue(emp.emergencycontactname);
-    this.Emergency this.Contact No.setValue(emp.emergencycontactno);
-    this.Marital Status.setValue(emp.maritalstatus);
-    this.Hobbies.setValue(emp.hobbies);
-    this.Family Details.setValue(emp.familydetails);
+//     let educationIndex = 0;
+//     this.educationOptions.forEach((val, index) => {
+//       if (val === emp.education) educationIndex = index;
+//     });
+//     this.Education.setValue(educationIndex);
 
-    let educationIndex = 0;
-    this.educationOptions.forEach((val, index) => {
-      if (val === emp.education) educationIndex = index;
-    });
-    this.Education.setValue(educationIndex);
-
-    this.InstitueName.setValue(emp.institutename);
-    this.Degree.setValue(emp.degree);
-    this.StartDate.setValue(emp.startdate);
-    this.EndDate.setValue(emp.enddate);
-    this.fileInput.nativeElement.value = '';
-  }
+//     this.InstitueName.setValue(emp.institutename);
+//     this.Degree.setValue(emp.degree);
+//     this.StartDate.setValue(emp.startdate);
+//     this.EndDate.setValue(emp.enddate);
+//     this.fileInput.nativeElement.value = '';
+//   }
 
 //   let professionalIndex = 0;
 //     this.educationOptions.forEach((val: any, index: any) => {
@@ -254,22 +271,34 @@ export class AppComponent implements OnInit, AfterViewInit {
 //   public get StartDate(): FormControl {
 //     return this.employeeForm.get('startdate') as FormControl;
 //   }
-  public get EndDate(): FormControl {
-    return this.employeeForm.get('enddate') as FormControl;
-  }
-  public get CompanyName(): FormControl {
-    return this.employeeForm.get('comapnyname') as FormControl;
-  }
-  public get Designation(): FormControl {
-    return this.employeeForm.get('designation') as FormControl;
-  }
-  public get JoiningDate(): FormControl {
-    return this.employeeForm.get('joiningdate') as FormControl;
-  }
-  public get RevealingDate(): FormControl {
-    return this.employeeForm.get('revealinggdate') as FormControl;
-  }
+//   public get EndDate(): FormControl {
+//     return this.employeeForm.get('enddate') as FormControl;
+//   }
+//   public get CompanyName(): FormControl {
+//     return this.employeeForm.get('comapnyname') as FormControl;
+//   }
+//   public get Designation(): FormControl {
+//     return this.employeeForm.get('designation') as FormControl;
+//   }
+//   public get JoiningDate(): FormControl {
+//     return this.employeeForm.get('joiningdate') as FormControl;
+//   }
+//   public get RevealingDate(): FormControl {
+//     return this.employeeForm.get('revealinggdate') as FormControl;
+//   }
 
-function CompanyName() {
-  throw new Error('Function not implemented.');
-}
+// function CompanyName() {
+//   throw new Error('Function not implemented.');
+// }
+// function Address() {
+//   throw new Error('Function not implemented.');
+// }
+
+// function FamilyDetails() {
+//   throw new Error('Function not implemented.');
+// }
+
+// function EndDate() {
+//   throw new Error('Function not implemented.');
+// }
+

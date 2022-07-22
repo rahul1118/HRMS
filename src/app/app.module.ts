@@ -4,18 +4,20 @@ import { AppRoutingModule } from './app-routing.module';
 //import { AppComponent } from '../app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AdduserComponent } from './adduser/adduser.component';
 
 @NgModule({
   declarations: [
-    AppModule,
+    //AppModule,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdduserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  //bootstrap: [AppComponent]
 })
 export class AppModule { }

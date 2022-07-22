@@ -17,7 +17,7 @@
       <div class="search-employees">
         <input type="search" class="form-control" placeholder="Search Employees"
           (input)="searchEmployees(searchInput.value)" #searchInput>
-      </div>
+
 
     </div>
 
@@ -102,7 +102,7 @@
               <select class="form-select" formControlName="education">
                 <option value="default" selected>Select your Education</option>
                 <option *ngFor="let option of educationOptions; let i = index;" value="{{i}}">
-                  {{option | titlecase}}
+                  {{option}}
                 </option>
               </select>
             </div>

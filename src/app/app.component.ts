@@ -1,33 +1,54 @@
-// import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-// import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-// import { EmployeeService } from './service/employee.service';
-// import { Employee } from './models/employee.model';
-// import { get } from 'mongoose';
-// import { Employee } from './models/employee.models';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { EmployeeService } from './service/employee.service';
+//import { Employee } from './models/employee.model';
+import { get } from 'mongoose';
+import { Employee } from './models/employee.models';
 
 
-// @Component({
-//   selector: 'app-root',
-//   templateUrl: './app.component.html',
-//   styleUrls: ['./app.component.css'],
-// })
-// export class AppComponent implements OnInit, AfterViewInit {
-//   @ViewChild('fileInput') fileInput: any;
-//   @ViewChild('addEmployeeButton') addEmployeeButton: any;
-//   title = 'EmployeeCRUD';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+})
+export class AppComponent implements OnInit, AfterViewInit {
+    employees: any;
+    employeeService: any;
+    buttontemp: any;
+    BirthDay: any;
+    LastName: any;
+    FirstName: any;
+    Gender: any;
+    Contact: any;
+    Address: any;
+    PanCard: any;
+    BloodGroup: any;
+    EmergencyContact: any;
+    EmergencyContactName: any;
+    MaritalStatus: any;
+    FamilyDetails: any;
+    Hobbies: any;
+    employeesToDisplay: any;
+    ngAfterViewInit(): void {
+        throw new Error('Method not implemented.');
+    }
+  @ViewChild('fileInput') fileInput: any;
+  @ViewChild('addEmployeeButton') addEmployeeButton: any;
+  title = 'EmployeeCRUD';
 
-//   employeeForm: FormGroup;
+  employeeForm: FormGroup | undefined;
+    fb: any;
 
-//   employees: Employee[];
-//   employeesToDisplay: Employee[];
-//   educationOptions = [
-//     '10th pass',
-//     '12th pass'
-//     'diploma',
-//     'graduate',
-//     'post graduate',
-//     'PhD',
-//   ];
+  //employees: Employee[];
+  employeesToDisplay: Employee[];
+  educationOptions = [
+    '10th pass',
+    '12th pass'
+    'diploma',
+    'graduate',
+    'post graduate',
+    'PhD',
+  ];
 //   FirstName: any;
 //   LastName: any;
 //   Gender: any;
@@ -53,95 +74,96 @@
 //   MaritalStatus: any;
 //   FamilyDetails: any;
 
-//   constructor(
-//     private fb: FormBuilder,
-//     private employeeService: EmployeeService
-//   ) {
-//     this.employeeForm = fb.group({});
-//     this.employees = [];
-//     this.employeesToDisplay = this.employees;
-//   }
+  constructor(
+    fb: FormBuilder  ) {
+    this.employeeForm = fb.group({});
+    this.employees = [];
+    this.employeesToDisplay = this.employees;
+  }
 
-//   ngOnInit(): void {
-//     this.employeeForm = this.fb.group({
-//       firstname: this.fb.control(''),
-//       lastname: this.fb.control(''),
-//       birthday: this.fb.control(''),
-//       gender: this.fb.control(''),
-//       education: this.fb.control('default'),
-//       company: this.fb.control(''),
-//       jobExperience: this.fb.control(''),
-//       salary: this.fb.control(''),
-//     });
+  ngOnInit(): void {
+    this.employeeForm = this.fb.group({
+      firstname: this.fb.control(''),
+      lastname: this.fb.control(''),
+      birthday: this.fb.control(''),
+      gender: this.fb.control(''),
+      education: this.fb.control('default'),
+      company: this.fb.control(''),
+      jobExperience: this.fb.control(''),
+      salary: this.fb.control(''),
+    });
 
-//     this.employeeService.getEmployees().subscribe((res) => {
-//       for (let emp of res) {
-//         this.employees.unshift(emp);
-//       }
-//       this.employeesToDisplay = this.employees;
-//     });
-//   }
+    this.employeeService.getEmployees().subscribe((res: any) => {
+      for (let emp of res) {
+        this.employees.unshift(emp);
+      }
+      this.employeesToDisplay = this.employees;
+    });
+  }
 
-//   ngAfterViewInit(): void {
-//     this.buttontemp.nativeElement.click();
-//   }
+  ngAfterViewInit(): void {
+    this.buttontemp.nativeElement.click();
+  }
 
-//   addEmployee() {
-//     let employee: Employee = {
-//       firstname: this.FirstName.value,
-//       lastname: this.LastName.value,
-//       birthdate: this.BirthDay.value,
-//       gender: this.Gender.value,
-//       address: this.Address.value,
-//       contactno: this.Contact.value,
-//       pancard: this.PanCard.value,
-//       bloodgroup: this.BloodGroup.value,
-//       emergencycontactname: this.EmergencyContactName.value,
-//       emergencycontactno: this.EmergencyContact.value,
-//       maritalstatus: this.MaritalStatus.value,
-//       hobbies: this.Hobbies.value,
-//       familydetails: this.FamilyDetails.value,
-//       education: undefined,
-//       institutename: function (institutename: any): void {
-//         throw new Error('Function not implemented.');
-//       },
-//       instituename: '',
-//       degree: '',
-//       startdate: 0,
-//       enddate: 0,
-//       companyname: '',
-//       designation: '',
-//       joiningdate: 0,
-//       revealingdate: 0
-//     };
-//     this.employeeService.postEmployee(employee).subscribe((res) => {
-//       this.employees.unshift(res);
-//       this.clearForm();
-//     });
-//   }
-//   clearForm() {
-//     throw new Error('Method not implemented.');
-//   }
+  addEmployee() {
+    let employee: Employee = {
+      firstname: this.FirstName.value,
+      lastname: this.LastName.value,
+      birthdate: this.BirthDay.value,
+      gender: this.Gender.value,
+      address: this.Address.value,
+      contactno: this.Contact.value,
+      pancard: this.PanCard.value,
+      bloodgroup: this.BloodGroup.value,
+      emergencycontactname: this.EmergencyContactName.value,
+      emergencycontactno: this.EmergencyContact.value,
+      maritalstatus: this.MaritalStatus.value,
+      hobbies: this.Hobbies.value,
+      familydetails: this.FamilyDetails.value,
+      education: undefined,
+      institutename: function (institutename: any): void {
+        throw new Error('Function not implemented.');
+      },
+      instituename: '',
+      degree: '',
+      startdate: 0,
+      enddate: 0,
+      companyname: '',
+      designation: '',
+      joiningdate: 0,
+      revealingdate: 0
+    };
+    this.employeeService.postEmployee(employee).subscribe((res: any) => {
+      this.employees.unshift(res);
+      this.clearForm();
+    });
+  }
+  clearForm() {
+    throw new Error('Method not implemented.');
+  }
 
-//   removeEmployee(event: any) {
-//     this.employees.forEach((val, index) => {
-//       if (val.id === parseInt(event)) {
-//         this.employeeService.deleteEmployee(event).subscribe((res) => {
-//           this.employees.splice(index, 1);
-//         });
-//       }
-//     });
-//   }
+  removeEmployee(event: any) {
+    this.employees.forEach((val: { id: number; }, index: any) => {
+      if (val.id === parseInt(event)) {
+        this.employeeService.deleteEmployee(event).subscribe((res: any) => {
+          this.employees.splice(index, 1);
+        });
+      }
+    });
+  }
 
-//   editEmployee(event: any) {
-//     this.employees.forEach((val, ind) => {
-//       if (val.id === event) {
-//         this.setForm(val);
-//       }
-//     });
-//     this.removeEmployee(event);
-//     this.addEmployeeButton.nativeElement.click();
-//   }
+  editEmployee(event: any) {
+    this.employees.forEach((val: { id: any; }) => {
+      if (val.id === event) {
+        this.setForm(val);
+      }
+    });
+    this.removeEmployee(event);
+    this.addEmployeeButton.nativeElement.click();
+  }
+    setForm(val: any) {
+        throw new Error('Method not implemented.');
+    }
 
 //   setForm(emp: Employee) {
 //     this.FirstName.setValue(emp.firstname);
@@ -158,11 +180,11 @@
 //     this.Hobbies.setValue(emp.hobbies);
 //     this.Family Details.setValue(emp.familydetails);
 
-//     let educationIndex = 0;
-//     this.educationOptions.forEach((val, index) => {
-//       if (val === emp.education) educationIndex = index;
-//     });
-//     this.Education.setValue(educationIndex);
+    // let educationIndex = 0;
+    // this.educationOptions.forEach((val: any, index: number) => {
+    //   if (val === emp.education) educationIndex = index;
+    // });
+    // this.Education.setValue(educationIndex);
 
 //     this.InstitueName.setValue(emp.institutename);
 //     this.Degree.setValue(emp.degree);
@@ -287,18 +309,18 @@
 //     return this.employeeForm.get('revealinggdate') as FormControl;
 //   }
 
-// function CompanyName() {
-//   throw new Error('Function not implemented.');
-// }
-// function Address() {
-//   throw new Error('Function not implemented.');
-// }
+function CompanyName() {
+  throw new Error('Function not implemented.');
+}
+function Address() {
+  throw new Error('Function not implemented.');
+}
 
-// function FamilyDetails() {
-//   throw new Error('Function not implemented.');
-// }
+function FamilyDetails() {
+  throw new Error('Function not implemented.');
+}
 
-// function EndDate() {
-//   throw new Error('Function not implemented.');
-// }
-
+function EndDate() {
+  throw new Error('Function not implemented.');
+}
+  }
